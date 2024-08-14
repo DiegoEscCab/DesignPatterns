@@ -15,12 +15,20 @@ public class DesignPatternsApplication {
 
 	public static void main(String[] args) {
 		//testFactoryMethod();
-		testAbstractFactoryMethod();
+		//testAbstractFactoryMethod();
+		testBuilder();
 	}
 
-	private static void testFactoryMethod(){
-		Payment payment = PaymentFactory.buildPayment(TypePayment.GPAY);
-		payment.doPayment();
+	private static void testBuilder(){
+		com.company.creational.builder.Card card = new com.company.creational.builder.Card.CardBuilder(
+				"VISA",
+				"4242 4242 4242 4242")
+				.name("Diego")
+				.expires(2024)
+				.credit(true)
+				.build();
+
+		System.out.println(card);
 	}
 
 	private static void  testAbstractFactoryMethod(){
@@ -30,8 +38,12 @@ public class DesignPatternsApplication {
 		AbstractFactory abstractFactory1 = FactoryProvider.getFactory("PaymentMethod");
 		PaymentMethod paymentMethod = (PaymentMethod) abstractFactory1.create("DEBIT");
 
-
 		System.out.println("Type of card: " + card.getCardType() + ". Method payment: " + paymentMethod.doPayment());
+	}
+
+	private static void testFactoryMethod(){
+		Payment payment = PaymentFactory.buildPayment(TypePayment.GPAY);
+		payment.doPayment();
 	}
 
 }
