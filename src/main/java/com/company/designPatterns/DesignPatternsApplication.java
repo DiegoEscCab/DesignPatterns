@@ -7,8 +7,12 @@ import com.company.creational.abstractfactory.PaymentMethod;
 import com.company.creational.factory.Payment;
 import com.company.creational.factory.PaymentFactory;
 import com.company.creational.factory.TypePayment;
+import com.company.creational.prototype.PrototypeCard;
+import com.company.creational.prototype.PrototypeFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import static com.company.creational.prototype.PrototypeFactory.CardType.VISA;
 
 @SpringBootApplication
 public class DesignPatternsApplication {
@@ -16,7 +20,22 @@ public class DesignPatternsApplication {
 	public static void main(String[] args) {
 		//testFactoryMethod();
 		//testAbstractFactoryMethod();
-		testBuilder();
+		//testBuilder();
+		testPrototype();
+	}
+
+	private static void testPrototype(){
+		PrototypeFactory.loadCard();
+		try{
+			PrototypeCard visa = PrototypeFactory.getInstance(PrototypeFactory.CardType.VISA);
+			visa.getCard();
+
+			PrototypeCard amex = PrototypeFactory.getInstance(PrototypeFactory.CardType.AMEX);
+			amex.getCard();
+
+		} catch (CloneNotSupportedException e){
+			e.printStackTrace();
+		}
 	}
 
 	private static void testBuilder(){
