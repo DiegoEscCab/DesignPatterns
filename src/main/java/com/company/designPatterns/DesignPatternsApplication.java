@@ -9,7 +9,6 @@ import com.company.creational.factory.PaymentFactory;
 import com.company.creational.factory.TypePayment;
 import com.company.creational.prototype.PrototypeCard;
 import com.company.creational.prototype.PrototypeFactory;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import static com.company.creational.prototype.PrototypeFactory.CardType.VISA;
@@ -21,7 +20,13 @@ public class DesignPatternsApplication {
 		//testFactoryMethod();
 		//testAbstractFactoryMethod();
 		//testBuilder();
-		testPrototype();
+		//testPrototype();
+		testSingleton();
+	}
+
+	private static void testSingleton(){
+		com.company.creational.singleton.Card.getINSTANCE().setCardNumber("4242 4242 4242 4242");
+		System.out.println(com.company.creational.singleton.Card.getINSTANCE().getCardNumber());
 	}
 
 	private static void testPrototype(){
